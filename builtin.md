@@ -1,0 +1,68 @@
+alias 	Used to create a shortcut or an alternative name for a command.
+bg 	Moves suspended or stopped jobs in the background.
+bind 	It is used to show or modify the keybindings.
+break 	Used within loops to terminate the loop and continue the execution outside the loop.
+builtin 	If you have built-in and external commands with the same name, using builtin, you can prioritize the internal command for the execution.
+caller 	Used in the script to get more information about that specific code block.
+case 	It allows you to create multiple conditions and their outcomes based on a specific block.
+cd 	Change directory.
+command 	Used to execute external commands by bypassing any alias or functions having the same name.`
+compgen 	It will generate completions for command options, files, directories, and other items based on the current context.
+complete 	Allows you to modify the command completions for specific commands.
+compopt 	It allows you to modify argument completion for a specific command.
+continue 	Used in loops to skip the execution of the remaining iteration and move to the next iteration of the given code,
+coproc 	Creates a co-process to establish communication between the script and the background process.
+declare 	Used to define variables and their properties.
+dirs 	It shows the list of the commands that you went through recently.
+disown 	By using it, you can detach currently running jobs from the shell, allowing you to continue their execution even after closing the shell.
+echo 	Used to print output.
+enable 	Used to enable or disable the built-in shell commands and functions.
+eval 	It treats the given arguments as a command and executes it in such it was written in as script or executed directly in the terminal.
+exec 	It is used to replace the current process with the new one.
+exit 	Used to terminate the current shell session or the script.
+export 	It allows you to create or modify the environment variables.
+false 	Used to return a non-zero exit status that indicates a false condition or failure.
+fc 	By using it, you can list, modify and re-execute previously used commands.
+fg 	Used to bring suspended, or the background processes, to the foreground.
+for [condition]; do[execution]; 	A for loop is used in the shell script to execute repetitive tasks.
+function name { COMMANDS ; } 	Used to create a function that can be used multiple times in a shell session or the shell script.
+getopts 	Allows you to parse the command-line options and arguments inside a script.
+hash 	It helps the shell to remember the location of the executables.
+help 	Gives information about built-in commands in the shell.
+history 	Provides a list of previously executed commands.
+if COMMANDS; then COMMANDS; 	A condition statement that executed the command if the condition is true.
+jobs 	Displays the status of the background jobs running in the background.
+kill 	Sends a signal to kill to terminate the process.
+let arg [arg ...] 	Using the let command, you can perform the arithmetic operations.
+local 	It allows the user to define local variables within the specific function.
+logout 	As the name suggests, it logs you out of the current user session.
+mapfile 	Reads text from an input stream or a file and stores it in an array.
+popd 	It is used to replace the top directory from the directory stack with the current directory.
+printf 	Used to format and print the variable values or the text.
+pushd 	Allows you to change the directory and stores the previous directory to the directory stack, by which you can easily navigate between multiple directories with the least effort.
+pwd 	When executed, it shows the current working directory.
+read 	Reads input from a file or user and assigns it to a variable.
+readarray 	Used to read lines from the input file and turns it into an array variable.
+readonly 	Used to declare and define read-only variables.
+return 	It is used to exit a function and, optionally, you can also specify a return value.
+select 	By using it, you can create a simple menu or interactive selection prompt for a user.
+set 	Allows you to modify the shell settings and parameters.
+shift 	By using it, you can drop the first argument and lower the remaining ones a step lower in the list of positional parameters.
+shopt 	Provides various options to modify the behavior of the shell.
+source 	It is used to reload config files and execute the script in the current shell.
+suspend 	Used to suspend the current shell and returns the control to the parent shell.
+test 	Used within the shell script, allowing you to check conditions and perform various tests.
+time 	Used to measure the command or script execution time.
+times 	It is used to measure the CPU usage of a shell session or a shell script.
+trap 	It allows you to execute specific operations when received defined signals.
+true 	Returns a successful exit status.
+type 	Informs you about the type of the command.
+typeset 	Allows you to define and control the behavior of the variables.
+ulimit 	By using it, you can manage resources for shell sessions.
+umask 	Allows you to control permissions given to newly created files and directories.
+unalias 	Used to unset alias which was configured using the alias command.
+unset 	It is used to unset variables and functions which were defined previously.
+until COMMANDS; do COMMANDS; done 	It is a loop that will be iterated until the given conditions are met.
+variables 	Provides names and descriptions of some shell variables.
+wait 	Used to pause the execution until all the background tasks are complete.
+while COMMANDS; do COMMANDS; done 	It is a loop that will be iterated till the specified conditions are true.
