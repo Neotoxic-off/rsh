@@ -1,10 +1,30 @@
-use std::env;
-use std::path::Path;
+use std::collections::HashMap;
 
-pub fn cd(path: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let new_path = Path::new(path);
+use crate::env;
 
-    env::set_current_dir(new_path)?;
+type FnPointer = fn(Vec<&str>) -> Result<(), Box<dyn std::error::Error>>;
+
+fn back(arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Error>> {
+    env::chdir(&env::get_oldpwd());
+
+    return Ok(());
+}
+
+fn home(arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Error>> {
+    env::chdir(&env::get_home());
+
+    return Ok(());
+}
+
+pub fn cd(path: &str, arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Error>> {
+    let commands: HashMap<&str, FnPointer> = HashMap::from([
+        ("-", back as FnPointer),
+        ("~", home as FnPointer)
+    ]);
+
+    if let Some(&command) = commands.get(&path) {
+        return command(arguments);
+    }
 
     return Ok(());
 }
