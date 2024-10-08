@@ -1,0 +1,2 @@
+# rsh
+🐚 Rusty shell
