@@ -18,5 +18,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: |
-        cd rst
+        cd rsh
         cargo build --verbose
