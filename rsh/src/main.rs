@@ -10,10 +10,9 @@ pub mod lib;
 
 fn launcher(input: String, builtins: &builtins::Builtins) -> bool {
     let command: &str;
-    let split: Vec<&str>;
+    let split: Vec<&str> = input.split_whitespace().collect();
     let mut arguments: Vec<&str> = Vec::new();
 
-    split = input.split_whitespace().collect();
     if !split.is_empty() {
         command = split[0];
         if split.len() >= 2 {

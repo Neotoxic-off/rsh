@@ -1,8 +1,8 @@
-use signal_hook::{consts::SIGINT, consts::SIGTERM, iterator::Signals};
+use signal_hook::{consts::SIGINT, consts::SIGTERM, iterator::Signals, iterator::SignalsInfo};
 use std::{error::Error, sync::{Arc, Mutex}, thread};
 
 pub fn handle(exit_flag: Arc<Mutex<bool>>) -> Result<(), Box<dyn Error>> {
-    let mut signals = Signals::new([SIGINT, SIGTERM])?;
+    let mut signals: SignalsInfo = Signals::new([SIGINT, SIGTERM])?;
 
     thread::spawn(move || {
         for _ in signals.forever() {
