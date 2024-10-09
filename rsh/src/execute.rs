@@ -9,8 +9,8 @@ fn get_path_command(command: &str) -> String {
     let mut content: Vec<String> = Vec::new();
 
     for path in paths.iter() {
-        if lib::is_directory(path) == true {
-            content = lib::get_directory(path, false);
+        if lib::Io::is_directory(path) == true {
+            content = lib::Io::get_directory(path, false);
             if content.iter().any(|e| command.contains(e)) {
                 return path.to_string();
             }
@@ -49,7 +49,11 @@ pub fn execute(command: &str, arguments: Vec<&str>, builtins: &builtins::Builtin
         let command_path: String = get_path_command(command);
         if command_path.is_empty() == false {
             result = exec(&format!("{command_path}/{command}"), arguments);
-            println!("{}", result);
+            if result.ends_with("\n") == false {
+                println!("{}", result);
+            } else {
+                print!("{}", result);
+            }
         }
     }
 

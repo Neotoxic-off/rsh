@@ -1,5 +1,8 @@
+use std::{sync::{Arc, Mutex}};
+
 mod execute;
 mod prompt;
+mod signals;
 
 pub mod env;
 pub mod builtins;
@@ -24,12 +27,13 @@ fn launcher(input: String, builtins: &builtins::Builtins) -> bool {
 }
 
 fn main() {
-    let mut exit: bool = false;
-    let mut input: String;
-    let builtins: builtins::Builtins = builtins::Builtins;
+    let exit_flag = Arc::new(Mutex::new(false));
+    let exit_flag_clone: std::sync::Arc<std::sync::Mutex<bool>> = Arc::clone(&exit_flag);
+    
+    let _: Result<(), Box<dyn std::error::Error>> = signals::handle(exit_flag_clone);
 
-    while exit != true {
-        input = prompt::prompt();
-        exit = launcher(input, &builtins);
+    while !*exit_flag.lock().unwrap() {
+        let input = prompt::prompt();
+        *exit_flag.lock().unwrap() = launcher(input, &builtins::Builtins);
     }
 }

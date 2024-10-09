@@ -2,6 +2,10 @@ use std::io::{self, Write};
 
 use crate::env;
 
+fn get_user() -> String {
+    return env::get_user();
+}
+
 fn get_lowest_dir() -> String {
     let pwd: String = env::get_pwd();
     let separator: char = '/';
@@ -17,7 +21,8 @@ fn get_lowest_dir() -> String {
 
 fn ui() -> String {
     let pwd: String = get_lowest_dir();
-    let prompt: String = format!("{pwd}$>");
+    let user: String = get_user();
+    let prompt: String = format!("{pwd}>>({user})# ");
 
     return prompt;
 }

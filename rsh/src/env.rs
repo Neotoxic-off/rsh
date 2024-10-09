@@ -5,6 +5,7 @@ static PWD: &str = "PWD";
 static OLDPWD: &str = "OLDPWD";
 static HOME: &str = "HOME";
 static PATH: &str = "PATH";
+static USER: &str = "USER";
 
 fn get_value(key: &str) -> String {
     let result: Result<String, VarError> = env::var(key);
@@ -22,6 +23,10 @@ fn set_value(key: &str, value: &str) -> () {
 pub fn get_path() -> Vec<String> {
     let path = env::var(PATH).unwrap_or_else(|_| String::new());
     path.split(':').map(|s| s.to_string()).collect()
+}
+
+pub fn get_user() -> String {
+    return get_value(USER);
 }
 
 pub fn get_pwd() -> String {
