@@ -1,5 +1,4 @@
 use std::io;
-use std::fmt;
 
 use crate::env;
 
@@ -7,7 +6,7 @@ fn get_lowest_dir() -> String {
     let pwd: String = env::get_pwd();
     let separator: char = '/';
     let count: usize = pwd.chars().filter(|c| *c == separator).count();
-    let mut split: Vec<&str>;
+    let split: Vec<&str>;
     if count > 1 {
         split = pwd.split(separator).collect();
         return String::from(split[count - 1]);
@@ -18,7 +17,7 @@ fn get_lowest_dir() -> String {
 
 fn ui() -> String {
     let pwd: String = get_lowest_dir();
-    let mut prompt: String = format!("{pwd}$>");
+    let prompt: String = format!("{pwd}$>");
 
     return prompt;
 }

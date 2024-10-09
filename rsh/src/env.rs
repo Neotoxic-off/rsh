@@ -1,8 +1,13 @@
-use std::env;
+use std::env::{self, VarError};
 use std::path::Path;
 
 fn get_value(key: &str) -> String {
-    return env::var(key).unwrap();
+    let result: Result<String, VarError> = env::var(key);
+
+    match result {
+        Ok(_) => return result.unwrap(),
+        Err(_) => return String::new()
+    }
 }
 
 pub fn get_pwd() -> String {

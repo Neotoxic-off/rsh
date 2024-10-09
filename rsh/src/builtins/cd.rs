@@ -1,11 +1,15 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, ptr::null};
 
 use crate::env;
 
 type FnPointer = fn(Vec<&str>) -> Result<(), Box<dyn std::error::Error>>;
 
 fn back(arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Error>> {
-    env::chdir(&env::get_oldpwd());
+    let oldpwd: String = env::get_oldpwd();
+
+    if oldpwd.is_empty() == false {
+        env::chdir(&oldpwd);
+    }
 
     return Ok(());
 }
