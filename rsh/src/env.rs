@@ -1,6 +1,10 @@
 use std::env::{self, VarError};
 use std::path::Path;
 
+static PWD: &str = "PWD";
+static OLDPWD: &str = "OLDPWD";
+static HOME: &str = "HOME";
+
 fn get_value(key: &str) -> String {
     let result: Result<String, VarError> = env::var(key);
 
@@ -10,16 +14,28 @@ fn get_value(key: &str) -> String {
     }
 }
 
+fn set_value(key: &str, value: &str) -> () {
+    env::set_var(key, value);
+}
+
 pub fn get_pwd() -> String {
-    return get_value("PWD");
+    return get_value(PWD);
 }
 
 pub fn get_home() -> String {
-    return get_value("HOME");
+    return get_value(HOME);
 }
 
 pub fn get_oldpwd() -> String {
-    return get_value("OLDPWD");
+    return get_value(OLDPWD);
+}
+
+pub fn set_oldpwd(value: &str) -> () {
+    set_value(OLDPWD, value);
+}
+
+pub fn set_pwd(value: &str) -> () {
+    set_value(PWD, value);
 }
 
 pub fn chdir(path: &str) -> Result<(), Box<dyn std::error::Error>> {

@@ -15,6 +15,7 @@ fn back(arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn home(arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Error>> {
+    env::set_oldpwd(&env::get_pwd());
     env::chdir(&env::get_home());
 
     return Ok(());
