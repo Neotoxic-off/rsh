@@ -29,6 +29,8 @@ pub fn cd(path: &str, arguments: Vec<&str>) -> Result<(), Box<dyn std::error::Er
 
     if let Some(&command) = commands.get(&path) {
         return command(arguments);
+    } else {
+        env::chdir(path);
     }
 
     return Ok(());

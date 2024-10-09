@@ -3,6 +3,7 @@ mod prompt;
 
 pub mod env;
 pub mod builtins;
+pub mod lib;
 
 fn launcher(input: String, builtins: &builtins::Builtins) -> bool {
     let command: &str;

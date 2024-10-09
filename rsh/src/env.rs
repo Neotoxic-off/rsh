@@ -4,6 +4,7 @@ use std::path::Path;
 static PWD: &str = "PWD";
 static OLDPWD: &str = "OLDPWD";
 static HOME: &str = "HOME";
+static PATH: &str = "PATH";
 
 fn get_value(key: &str) -> String {
     let result: Result<String, VarError> = env::var(key);
@@ -16,6 +17,11 @@ fn get_value(key: &str) -> String {
 
 fn set_value(key: &str, value: &str) -> () {
     env::set_var(key, value);
+}
+
+pub fn get_path() -> Vec<String> {
+    let path = env::var(PATH).unwrap_or_else(|_| String::new());
+    path.split(':').map(|s| s.to_string()).collect()
 }
 
 pub fn get_pwd() -> String {
