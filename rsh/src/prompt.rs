@@ -1,4 +1,4 @@
-use std::io;
+use std::io::{self, Write};
 
 use crate::env;
 
@@ -9,7 +9,7 @@ fn get_lowest_dir() -> String {
     let split: Vec<&str>;
     if count > 1 {
         split = pwd.split(separator).collect();
-        return String::from(split[count - 1]);
+        return String::from(split[count]);
     }
 
     return pwd;
@@ -23,9 +23,10 @@ fn ui() -> String {
 }
 
 pub fn prompt() -> String {
-    let mut input: String = String::new();
-    println!("{}",  ui());
-    let _ = io::stdin().read_line(&mut input);
+    let mut input = String::new();
 
-    return input.trim().to_string();
+    print!("{}", ui());
+    let _ = io::stdout().flush();
+    let _ = io::stdin().read_line(&mut input);
+    input.trim().to_string()
 }

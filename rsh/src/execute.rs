@@ -37,17 +37,16 @@ fn exec(command: &str, arguments: Vec<&str>) -> String {
 }
 
 pub fn execute(command: &str, arguments: Vec<&str>, builtins: &builtins::Builtins) -> bool {
-    let mut command_path: String = String::new();
     let mut result: String;
     
     if command == "exit" {
         return true;
     }
-
+    
     if let Some(handler) = builtins.handle(command) {
         let _ = handler(builtins, arguments);
     } else {
-        command_path = get_path_command(command);
+        let command_path: String = get_path_command(command);
         if command_path.is_empty() == false {
             result = exec(&format!("{command_path}/{command}"), arguments);
             println!("{}", result);

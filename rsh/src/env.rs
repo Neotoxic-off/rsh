@@ -1,5 +1,5 @@
 use std::env::{self, VarError};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 static PWD: &str = "PWD";
 static OLDPWD: &str = "OLDPWD";
@@ -48,6 +48,13 @@ pub fn chdir(path: &str) -> Result<(), Box<dyn std::error::Error>> {
     let new_path = Path::new(path);
 
     env::set_current_dir(new_path)?;
+    let current_dir: PathBuf = env::current_dir().unwrap();
+
+    if let Some(current_dir_str) = current_dir.to_str() {
+        set_pwd(current_dir_str);
+    } else {
+        eprintln!("Failed to convert current directory to a valid string.");
+    }
 
     return Ok(());
 }
